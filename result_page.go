@@ -14,6 +14,11 @@ type ResultPage[T any] interface {
 }
 
 //goland:noinspection GoExportedFuncWithUnexportedType
+func NewEmptyResultPage[T any]() *resultPage[T] {
+	return NewResultPage[T](0, 0, nil)
+}
+
+//goland:noinspection GoExportedFuncWithUnexportedType
 func NewResultPage[T any](totalCount, totalPages int, items []*T) *resultPage[T] {
 	return &resultPage[T]{
 		totalCount: totalCount,
