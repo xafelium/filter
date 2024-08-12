@@ -244,10 +244,10 @@ func NewPaginationFromArgs(limit, offset *int, sort *string) (Pagination, error)
 }
 
 func DefaultPagination() Pagination {
-	return Builder().Build()
+	return PaginationBuilder().Build()
 }
 
-func Builder() *builder {
+func PaginationBuilder() *builder {
 	b := &builder{
 		p: Pagination{Limit: 100, Offset: 0},
 	}
@@ -278,15 +278,15 @@ func (b *builder) Build() Pagination {
 }
 
 func All() Pagination {
-	return Builder().WithLimit(math.MaxInt).WithOffset(0).Build()
+	return PaginationBuilder().WithLimit(math.MaxInt).WithOffset(0).Build()
 }
 
 func One() Pagination {
-	return Builder().WithLimit(1).WithOffset(0).Build()
+	return PaginationBuilder().WithLimit(1).WithOffset(0).Build()
 }
 
 func First(sort string) Pagination {
-	return Builder().WithLimit(1).WithSort(sort).WithOffset(0).Build()
+	return PaginationBuilder().WithLimit(1).WithSort(sort).WithOffset(0).Build()
 }
 
 // PageCount calculates to total number of pages.
